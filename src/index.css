@@ -1,0 +1,114 @@
+/* index.css */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100vh;
+  width: auto;
+  margin: 0 auto;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.page__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+
+  background-color: violet;
+  height: 390px;
+}
+
+.page__title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 57px;
+  text-align: center;
+  padding-bottom: 45px;
+}
+
+.page__form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+
+  background-color: blue;
+}
+
+.page__input {
+  width: 648px;
+  height: 53px;
+  border: 1px solid black;
+  border-radius: 13px;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 1em;
+  margin-right: 34px;
+}
+
+.page__button {
+  width: 53px;
+  height: 53px;
+  border: 1px solid black;
+  border-radius: 100px;
+  background-color: #fff;
+}
+
+.page__footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: aqua;
+
+  flex-grow: 1;
+}
+
+.page__message {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  text-align: center;
+}
+
+.page__picture {
+  margin-bottom: 50px;
+  width: 264px;
+  height: 190px;
+  display: block;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.talk {
+  background-image: url(../presets/talk.gif);
+}
+
+.typing {
+  background-image: url(../presets/typing.gif);
+}
+
+.blinking {
+  background-image: url(../presets/blinking.gif);
+}
+
+.hidden {
+  display: none;
+}

@@ -6,7 +6,5 @@ overrides: []
 parserOptions:
   ecmaVersion: latest
   sourceType: module
-rules: 
-    import/extensions: 0
-     no-console: 0
-
+rules:
+  import/extensions: 0

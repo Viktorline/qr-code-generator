@@ -1,4 +1,5 @@
-/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +32,7 @@ body {
   justify-content: flex-end;
   align-items: center;
 
-  background-color: violet;
+  /* background-color: violet; */
   height: 390px;
 }
 
@@ -48,10 +49,13 @@ body {
   justify-content: center;
   align-items: flex-start;
 
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .page__input {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 12px;
+
   width: 648px;
   height: 53px;
   border: 1px solid black;
@@ -76,7 +80,7 @@ body {
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
-  background-color: aqua;
+  /* background-color: aqua; */
 
   flex-grow: 1;
 }
@@ -98,15 +102,15 @@ body {
 }
 
 .talk {
-  background-image: url(../presets/talk.gif);
+  background-image: url(./presets/talk.gif);
 }
 
 .typing {
-  background-image: url(../presets/typing.gif);
+  background-image: url(./presets/typing.gif);
 }
 
 .blinking {
-  background-image: url(../presets/blinking.gif);
+  background-image: url(./presets/blinking.gif);
 }
 
 .hidden {

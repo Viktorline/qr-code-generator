@@ -1,2 +1,4 @@
 import './index.css';
-import './view.js';
+import runApp from './app.js';
+
+runApp();

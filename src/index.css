@@ -33,7 +33,8 @@ body {
   align-items: center;
 
   /* background-color: violet; */
-  height: 390px;
+  /* height: 390px; */
+  flex-grow: 1;
 }
 
 .page__title {
@@ -41,6 +42,7 @@ body {
   font-size: 57px;
   text-align: center;
   padding-bottom: 45px;
+  cursor: default;
 }
 
 .page__form {
@@ -73,6 +75,17 @@ body {
   border: 1px solid black;
   border-radius: 100px;
   background-color: #fff;
+}
+
+.page__qrcontainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  flex-grow: 3;
 }
 
 .page__footer {
@@ -115,4 +128,16 @@ body {
 
 .hidden {
   display: none;
+}
+
+.text-danger {
+  color: #ff0000;
+}
+
+.is-invalid {
+  background-color: red;
+}
+
+.pointer {
+  cursor: pointer;
 }

@@ -2,7 +2,22 @@
 
 import onChange from 'on-change';
 
-const renderMan = (actionType, elements, phrase = '') => {
+const speechSpeed = 60;
+const returnSpeed = 2500;
+
+const displayTextLetterByLetter = (element, phrase, delay) => {
+  let index = 0;
+  const interval = setInterval(() => {
+    element.message.textContent += phrase[index];
+    index += 1;
+
+    if (index >= phrase.length) {
+      clearInterval(interval);
+    }
+  }, delay);
+};
+
+const renderMan = (actionType, elements, delay, phrase = '') => {
   switch (actionType) {
     case 'typing':
       elements.officeGuy.classList = '';
@@ -12,7 +27,7 @@ const renderMan = (actionType, elements, phrase = '') => {
       elements.officeGuy.classList = '';
       elements.officeGuy.classList.add('talking', 'page__officeGuy');
       elements.message.textContent = '';
-      elements.message.textContent = phrase;
+      displayTextLetterByLetter(elements, phrase, delay);
       break;
     case 'blinking':
       elements.officeGuy.classList = '';
@@ -27,13 +42,13 @@ const renderMan = (actionType, elements, phrase = '') => {
 const renderErrors = (elements, value) => {
   switch (value) {
     case 'invalid':
-      renderMan('talking', elements, 'Your link is not valid!');
+      renderMan('talking', elements, speechSpeed, 'Your link is not valid!');
       break;
     case 'AxiosError':
-      renderMan('talking', elements, 'We got network error!');
+      renderMan('talking', elements, speechSpeed, 'We got network error!');
       break;
     case 'unknown':
-      renderMan('talking', elements, 'We got unknown problem');
+      renderMan('talking', elements, speechSpeed, 'We got unknown problem');
       break;
     default:
       break;
@@ -57,39 +72,35 @@ const renderQr = (elements, qrCode) => {
   elements.form.style.display = 'none';
 };
 
-// const buttonBlock = (value = null) => {
-//   const button = document.querySelector('button[type="submit"]');
-//   button.disabled = !!value;
-// };
-
-export default (state, elements) => onChange(state, (path, value) => {
-  switch (value) {
-    case 'sendingRequest':
-      renderMan('typing', elements);
-      // typing
-      break;
-    case 'responseRecieved':
-      renderQr(elements, state.qrCode);
-      renderMan('talking', elements, 'Your QrCode is ready. Copy on click.');
-      setTimeout(() => {
-        renderMan('blinking', elements);
-      }, 4000); // 5000 milliseconds = 5 seconds
-      break;
-    case 'copyied':
-      renderMan('talking', elements, 'Copied to clipboard!');
-      setTimeout(() => {
-        renderMan('blinking', elements);
-      }, 2500);
-      break;
-    case 'failed':
-      renderErrors(elements, state.form.error);
-      setTimeout(() => {
-        renderMan('blinking', elements);
-      }, 2500);
-      break;
-    case '':
-      break;
-    default:
-      break;
-  }
-});
+export default (state, elements) =>
+  onChange(state, (path, value) => {
+    switch (value) {
+      case 'sendingRequest':
+        renderMan('typing', elements);
+        // typing
+        break;
+      case 'responseRecieved':
+        renderQr(elements, state.qrCode);
+        renderMan('talking', elements, speechSpeed, 'Your QrCode is ready. Copy on click.');
+        setTimeout(() => {
+          renderMan('blinking', elements);
+        }, 4000);
+        break;
+      case 'copyied':
+        renderMan('talking', elements, speechSpeed, 'Copied to clipboard!');
+        setTimeout(() => {
+          renderMan('blinking', elements);
+        }, returnSpeed);
+        break;
+      case 'failed':
+        renderErrors(elements, state.form.error);
+        setTimeout(() => {
+          renderMan('blinking', elements);
+        }, returnSpeed);
+        break;
+      case '':
+        break;
+      default:
+        break;
+    }
+  });

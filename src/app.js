@@ -13,7 +13,7 @@ const generateQRCode = async (data) => {
   try {
     const response = await axios.get(apiUrl, { params, responseType: 'arraybuffer' });
     const qrCodeImageUrl = URL.createObjectURL(
-      new Blob([response.data], { type: response.headers['content-type'] }),
+      new Blob([response.data], { type: response.headers['content-type'] })
     );
     return qrCodeImageUrl;
   } catch (error) {
@@ -97,7 +97,7 @@ export default () => {
             watchedState.form.status = 'copyied';
             setTimeout(() => {
               watchedState.form.status = '';
-            }, 2500); // 5000 milliseconds = 5 seconds
+            }, 3000);
           })
           .catch((error) => {
             throw new Error('Error copying QR code to clipboard:', error);

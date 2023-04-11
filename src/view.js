@@ -4,15 +4,21 @@ import onChange from 'on-change';
 
 const speechSpeed = 60;
 const returnSpeed = 2500;
+const returnToBlinkingSpeed = 4000;
 
-const displayTextLetterByLetter = (element, phrase, delay) => {
+const displayTextLetterByLetter = (elements, phrase, delay) => {
+  elements.qrContainer.style.pointerEvents = 'none';
+  elements.button.disabled = true;
+
   let index = 0;
   const interval = setInterval(() => {
-    element.message.textContent += phrase[index];
+    elements.message.textContent += phrase[index];
     index += 1;
 
     if (index >= phrase.length) {
       clearInterval(interval);
+      elements.qrContainer.style.pointerEvents = 'auto';
+      elements.button.disabled = false;
     }
   }, delay);
 };
@@ -72,35 +78,33 @@ const renderQr = (elements, qrCode) => {
   elements.form.style.display = 'none';
 };
 
-export default (state, elements) =>
-  onChange(state, (path, value) => {
-    switch (value) {
-      case 'sendingRequest':
-        renderMan('typing', elements);
-        // typing
-        break;
-      case 'responseRecieved':
-        renderQr(elements, state.qrCode);
-        renderMan('talking', elements, speechSpeed, 'Your QrCode is ready. Copy on click.');
-        setTimeout(() => {
-          renderMan('blinking', elements);
-        }, 4000);
-        break;
-      case 'copyied':
-        renderMan('talking', elements, speechSpeed, 'Copied to clipboard!');
-        setTimeout(() => {
-          renderMan('blinking', elements);
-        }, returnSpeed);
-        break;
-      case 'failed':
-        renderErrors(elements, state.form.error);
-        setTimeout(() => {
-          renderMan('blinking', elements);
-        }, returnSpeed);
-        break;
-      case '':
-        break;
-      default:
-        break;
-    }
-  });
+export default (state, elements) => onChange(state, (path, value) => {
+  switch (value) {
+    case 'sendingRequest':
+      renderMan('typing', elements);
+      break;
+    case 'responseRecieved':
+      renderQr(elements, state.qrCode);
+      renderMan('talking', elements, speechSpeed, 'Your QrCode is ready. Copy on click.');
+      setTimeout(() => {
+        renderMan('blinking', elements);
+      }, returnToBlinkingSpeed);
+      break;
+    case 'copyied':
+      renderMan('talking', elements, 60, 'Copied to clipboard! Click om me to create a new one!');
+      setTimeout(() => {
+        renderMan('blinking', elements);
+      }, returnToBlinkingSpeed);
+      break;
+    case 'failed':
+      renderErrors(elements, state.form.error);
+      setTimeout(() => {
+        renderMan('blinking', elements);
+      }, returnSpeed);
+      break;
+    case '':
+      break;
+    default:
+      break;
+  }
+});

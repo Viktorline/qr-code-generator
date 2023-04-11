@@ -13,11 +13,11 @@ const generateQRCode = async (data) => {
   try {
     const response = await axios.get(apiUrl, { params, responseType: 'arraybuffer' });
     const qrCodeImageUrl = URL.createObjectURL(
-      new Blob([response.data], { type: response.headers['content-type'] })
+      new Blob([response.data], { type: response.headers['content-type'] }),
     );
     return qrCodeImageUrl;
   } catch (error) {
-    console.error('Error generating QR code:', error);
+    throw new Error('Error generating QR code:', error);
   }
 };
 
@@ -95,7 +95,7 @@ export default () => {
             watchedState.message = 'copy';
           })
           .catch((error) => {
-            console.error('Error copying QR code to clipboard:', error);
+            throw new Error('Error copying QR code to clipboard:', error);
           });
       });
     }

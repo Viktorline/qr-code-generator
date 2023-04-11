@@ -36,37 +36,36 @@ const renderQr = (elements, qrCode) => {
   elements.form.style.display = 'none';
 };
 
-const renderMan = (actionType, elements, qrCode) => {};
+// const renderMan = (actionType, elements, qrCode) => {};
 
 const buttonBlock = (value = null) => {
   const button = document.querySelector('button[type="submit"]');
   button.disabled = !!value;
 };
 
-export default (state, elements) =>
-  onChange(state, (path, value) => {
-    console.log(value);
-    switch (value) {
-      case 'sendingRequest':
-        buttonBlock(value);
-        renderMan('typing');
-        //typing
-        break;
-      case 'responseRecieved':
-        console.log(state.qrCode);
-        renderQr(elements, state.qrCode);
-        renderMan('talk');
-        //talk
-        //blinking
-        break;
-      case 'failed':
-        renderErrors(elements, state.form.error);
-        renderMan('talk');
-        break;
-      case 'copy':
-        renderMan('talk');
-        break;
-      default:
-        break;
-    }
-  });
+export default (state, elements) => onChange(state, (path, value) => {
+  // console.log(value);
+  switch (value) {
+    case 'sendingRequest':
+      buttonBlock(value);
+      // renderMan('typing');
+      // typing
+      break;
+    case 'responseRecieved':
+      // console.log(state.qrCode);
+      renderQr(elements, state.qrCode);
+      // renderMan('talk');
+      // talk
+      // blinking
+      break;
+    case 'failed':
+      renderErrors(elements, state.form.error);
+      // renderMan('talk');
+      break;
+    case 'copy':
+      // renderMan('talk');
+      break;
+    default:
+      break;
+  }
+});

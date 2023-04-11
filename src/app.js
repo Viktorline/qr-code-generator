@@ -50,6 +50,19 @@ export default () => {
 
   const watchedState = viewer(state, elements);
 
+  const reset = () => {
+    watchedState.form.status = '';
+    watchedState.form.error = [];
+    watchedState.qrCode = [];
+    watchedState.message = '';
+
+    elements.form.reset();
+    elements.input.focus();
+    elements.qrContainer.innerHTML = '';
+    elements.qrContainer.classList.remove('active');
+    elements.form.style.display = 'flex';
+  };
+
   form.addEventListener('submit', (event) => {
     event.preventDefault();
     watchedState.form.status = 'sendingRequest';
@@ -104,5 +117,9 @@ export default () => {
           });
       });
     }
+  });
+
+  elements.officeGuy.addEventListener('click', () => {
+    reset();
   });
 };

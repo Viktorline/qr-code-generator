@@ -2,14 +2,13 @@
 
 import onChange from 'on-change';
 
-const speechSpeed = 60;
+const speechSpeed = 30;
 const returnSpeed = 2500;
-const returnToBlinkingSpeed = 4000;
+const returnToBlinkingSpeed = 5000;
 
 const displayTextLetterByLetter = (elements, phrase, delay) => {
   elements.qrContainer.style.pointerEvents = 'none';
   elements.button.disabled = true;
-
   let index = 0;
   const interval = setInterval(() => {
     elements.message.textContent += phrase[index];
@@ -91,7 +90,12 @@ export default (state, elements) => onChange(state, (path, value) => {
       }, returnToBlinkingSpeed);
       break;
     case 'copyied':
-      renderMan('talking', elements, 60, 'Copied to clipboard! Click om me to create a new one!');
+      renderMan(
+        'talking',
+        elements,
+        speechSpeed,
+        'Copied to clipboard! Click om me to create a new one!',
+      );
       setTimeout(() => {
         renderMan('blinking', elements);
       }, returnToBlinkingSpeed);
@@ -101,6 +105,9 @@ export default (state, elements) => onChange(state, (path, value) => {
       setTimeout(() => {
         renderMan('blinking', elements);
       }, returnSpeed);
+      break;
+    case 'reset':
+      renderMan('blinking', elements);
       break;
     case '':
       break;

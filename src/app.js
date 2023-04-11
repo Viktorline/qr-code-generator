@@ -95,6 +95,9 @@ export default () => {
           .write([item])
           .then(() => {
             watchedState.form.status = 'copyied';
+            setTimeout(() => {
+              watchedState.form.status = '';
+            }, 2500); // 5000 milliseconds = 5 seconds
           })
           .catch((error) => {
             throw new Error('Error copying QR code to clipboard:', error);

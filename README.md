@@ -4,5 +4,17 @@ Welcome to the QR Code Generator Web App! This app allows you to generate QR cod
 
 ### Features ✨
 
-- Supre simple and user-friendly interface
-- Generate QR codes for different data types including URLs, text, and contact information
+- Super simple and user-friendly interface
+- Generate QR codes for URLs only (other types in development)
+
+### To use follow the link:⤵️
+
+https://qr-code-generator-ochre.vercel.app/
+
+#### To install on your PC:
+
+```
+git clone https://github.com/Viktorline/QrCodeGenerator.git
+make install
+make start
+```

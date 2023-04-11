@@ -94,7 +94,7 @@ export default (state, elements) => onChange(state, (path, value) => {
         'talking',
         elements,
         speechSpeed,
-        'Copied to clipboard! Click om me to create a new one!',
+        'Copied to clipboard! Click on me to create a new one!',
       );
       setTimeout(() => {
         renderMan('blinking', elements);

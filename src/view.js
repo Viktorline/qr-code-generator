@@ -4,7 +4,7 @@ import onChange from 'on-change';
 
 const speechSpeed = 30;
 const returnSpeed = 2500;
-const returnToBlinkingSpeed = 5000;
+const returnToBlinkingSpeed = 4000;
 
 const displayTextLetterByLetter = (elements, phrase, delay) => {
   elements.qrContainer.style.pointerEvents = 'none';

@@ -152,6 +152,12 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100%;
+  }
+
   .page__title {
     font-size: 40px;
     padding-bottom: 30px;
@@ -170,6 +176,12 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100%;
+  }
+
   .page__title {
     font-size: 30px;
     padding-bottom: 20px;
@@ -189,6 +201,12 @@ body {
 }
 
 @media screen and (max-width: 470px) {
+  html,
+  body {
+    overflow: hidden;
+    height: 100%;
+  }
+
   .page__title {
     font-size: 25px;
     padding-bottom: 10px;

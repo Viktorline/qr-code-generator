@@ -2,16 +2,37 @@
 
 import onChange from 'on-change';
 
+const renderMan = (actionType, elements, phrase = '') => {
+  switch (actionType) {
+    case 'typing':
+      elements.officeGuy.classList = '';
+      elements.officeGuy.classList.add('typing', 'page__officeGuy');
+      break;
+    case 'talking':
+      elements.officeGuy.classList = '';
+      elements.officeGuy.classList.add('talking', 'page__officeGuy');
+      elements.message.textContent = '';
+      elements.message.textContent = phrase;
+      break;
+    case 'blinking':
+      elements.officeGuy.classList = '';
+      elements.officeGuy.classList.add('blinking', 'page__officeGuy');
+      break;
+    default:
+      break;
+  }
+};
+
 const renderErrors = (elements, value) => {
   switch (value) {
     case 'invalid':
-      elements.message.textContent = 'Your link is not valid!';
+      renderMan('talking', elements, 'Your link is not valid!');
       break;
     case 'AxiosError':
-      elements.feedback.textContent = 'We got network error!';
+      renderMan('talking', elements, 'We got network error!');
       break;
     case 'unknown':
-      elements.feedback.textContent = 'We got unknown problem';
+      renderMan('talking', elements, 'We got unknown problem');
       break;
     default:
       break;
@@ -35,29 +56,10 @@ const renderQr = (elements, qrCode) => {
   elements.form.style.display = 'none';
 };
 
-const renderMan = (actionType, elements, phrase = null) => {
-  switch (actionType) {
-    case 'typing':
-      elements.officeGuy.classList = '';
-      elements.officeGuy.classList.add('typing', 'page__officeGuy');
-      break;
-    case 'talking':
-      elements.officeGuy.classList = '';
-      elements.officeGuy.classList.add('talking', 'page__officeGuy');
-      break;
-    case 'blinking':
-      elements.officeGuy.classList = '';
-      elements.officeGuy.classList.add('blinking', 'page__officeGuy');
-      break;
-    default:
-      break;
-  }
-};
-
-const buttonBlock = (value = null) => {
-  const button = document.querySelector('button[type="submit"]');
-  button.disabled = !!value;
-};
+// const buttonBlock = (value = null) => {
+//   const button = document.querySelector('button[type="submit"]');
+//   button.disabled = !!value;
+// };
 
 export default (state, elements) =>
   onChange(state, (path, value) => {
@@ -65,25 +67,19 @@ export default (state, elements) =>
 
     switch (value) {
       case 'sendingRequest':
-        buttonBlock(value);
         renderMan('typing', elements);
         // typing
         break;
       case 'responseRecieved':
-        // console.log(state.qrCode);
         renderQr(elements, state.qrCode);
-        renderMan('talking', elements);
+        renderMan('talking', elements, 'Your QrCode is ready. Copy on click.');
         // renderMan('blinking', elements);
-        // talk
-        // blinking
+        break;
+      case 'copyied':
+        renderMan('talking', elements, 'Copied to clipboard!');
         break;
       case 'failed':
         renderErrors(elements, state.form.error);
-        renderMan('talking', elements);
-        // renderMan('talk');
-        break;
-      case 'copy':
-        // renderMan('talk');
         break;
       default:
         break;

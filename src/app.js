@@ -94,7 +94,7 @@ export default () => {
         navigator.clipboard
           .write([item])
           .then(() => {
-            watchedState.message = 'copy';
+            watchedState.form.status = 'copyied';
           })
           .catch((error) => {
             throw new Error('Error copying QR code to clipboard:', error);

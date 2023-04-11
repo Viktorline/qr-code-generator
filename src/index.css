@@ -104,7 +104,7 @@ body {
   text-align: center;
 }
 
-.page__picture {
+.page__officeGuy {
   margin-bottom: 50px;
   width: 264px;
   height: 190px;
@@ -114,8 +114,8 @@ body {
   background-repeat: no-repeat;
 }
 
-.talk {
-  background-image: url(./presets/talk.gif);
+.talking {
+  background-image: url(./presets/talking.gif);
 }
 
 .typing {

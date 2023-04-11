@@ -37,6 +37,7 @@ export default () => {
   const message = document.querySelector('.page__message');
   const button = document.querySelector('.page__button');
   const qrContainer = document.querySelector('.page__qrcontainer');
+  const officeGuy = document.querySelector('.page__officeGuy');
 
   const elements = {
     form,
@@ -44,6 +45,7 @@ export default () => {
     message,
     button,
     qrContainer,
+    officeGuy,
   };
 
   const watchedState = viewer(state, elements);

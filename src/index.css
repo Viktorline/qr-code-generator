@@ -51,7 +51,7 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 
   /* background-color: blue; */
 }
@@ -67,7 +67,6 @@ body {
   padding: 10px;
   box-sizing: border-box;
   background-color: #fff;
-  margin-bottom: 1em;
   margin-right: 34px;
 }
 
@@ -150,4 +149,60 @@ body {
 
 .pointer {
   cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .page__title {
+    font-size: 40px;
+    padding-bottom: 30px;
+  }
+
+  .page__input {
+    font-size: 10px;
+    width: 500px;
+    height: 53px;
+  }
+
+  .page__button {
+    width: 53px;
+    height: 53px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .page__title {
+    font-size: 30px;
+    padding-bottom: 20px;
+  }
+
+  .page__input {
+    font-size: 8px;
+    width: 350px;
+    height: 53px;
+    margin-right: 10px;
+  }
+
+  .page__button {
+    width: 53px;
+    height: 53px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .page__title {
+    font-size: 25px;
+    padding-bottom: 10px;
+  }
+
+  .page__input {
+    font-size: 10px;
+    width: 300px;
+    height: 53px;
+    margin-right: 10px;
+  }
+
+  .page__button {
+    width: 53px;
+    height: 53px;
+  }
 }
